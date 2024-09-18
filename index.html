@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="to_do">
+        <h1>To Do List 🖐📚</h1>
+        <input id="user_input" type="text" placeholder="Add to do" />
+        <button id="add_btn">Add Task</button>
+        <div class="list" id="delete">
+          <div id="count" class="all_clear">
+            <p>Number</p>
+            <p>1</p>
+          </div>
+          <div id="description">
+            <p>Description</p>
+            <p>T🎯</p>
+          </div>
+          <div id="action">
+            <p>Action</p>
+            <p>Today's Tasks 🎯</p>
+          </div>
+        </div>
+        <button id="clear_btn">Clear All</button>
+      </div>
+    </div>
+
+    <script>
+      let sum = 1;
+      document.getElementById("add_btn").addEventListener("click", function () {
+        const userInput = document.getElementById("user_input").value;
+        if (userInput === "") return;
+        const actions = document.getElementById("action");
+
+        const actionP = document.createElement("p");
+        actionP.innerText = userInput;
+        actions.appendChild(actionP);
+        document.getElementById("user_input").value = "";
+        const counts = document.getElementById("count");
+
+        const countP = document.createElement("p");
+        sum = sum + 1;
+        countP.innerText = sum;
+        counts.appendChild(countP);
+
+        const firstLetter = userInput.charAt(0);
+        const lastLetter = userInput.charAt(userInput.length - 1);
+        const attachedLetter = firstLetter + lastLetter;
+
+        const descriptions = document.getElementById("description");
+
+        const descriptionP = document.createElement("p");
+        descriptionP.innerText = attachedLetter;
+        descriptions.appendChild(descriptionP);
+      });
+
+      document
+        .getElementById("clear_btn")
+        .addEventListener("click", function () {
+          document.getElementById("count").innerHTML = "<p>Number</p>";
+          document.getElementById("description").innerHTML =
+            "<p>Description</p>";
+          document.getElementById("action").innerHTML = "<p>Action</p>";
+          sum = 0;
+        });
+    </script>
+  </body>
+</html>
